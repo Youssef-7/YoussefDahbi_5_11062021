@@ -1,6 +1,35 @@
-const elements ='<div id="camera"> <div class="camera_choix"> <div class="camera_images" > <img src="Server/images/vcam_1.jpg" alt="menu palette"/></div> </div> <div class="description"> <h3>Description</h3> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum dui ex, ac malesuada felis vestibulum ut. Etiam molestie luctus lorem a consectetur. Fusce fringilla lacus lectus, nec feugiat lacus consequat ac. Quisque iaculis ullamcorper diam nec blandit. Pellentesque in fringilla ipsum, eget maximus elit. Quisque nec justo dignissim, sagittis lectus vel, accumsan lacus. Aenean mi est, commodo eget felis ac, lobortis dapibus nibh. In ut ipsum quam. Vestibulum lectus urna, placerat nec odio eu, sollicitudin porttitor mauris. Pellentesque ullamcorper bibendum mauris, vel pretium libero tempor vitae. Pellentesque in feugiat leo.</p> <h3>PRIX: 100€ </h3> <div><a href="panier.html"><button class="btn">Ajouter au panier</button></a></div> </div> </div>'
- document.querySelector(".container").innerHTML = elements;
- fetch("http://localhost:3000/api/cameras/5be1ef211c9d44000030b062")
- .then(reponse => reponse.json ())
- .then(reponse2 => console.table(reponse2.name))
+let create_item_page_url = "http://localhost:3000/api/cameras/5be1ed3f1c9d44000030b061";
+
+fetch(create_item_page_url)
+  .then(function(item_page_response) {if (item_page_response.ok) {return item_page_response.json(); } })
+  .then(function(item_page_json) {
+    // -------------------------------------------------------------------
+        let item_name =item_page_json.name;
+        let camera_name = document.getElementById("camera_name");
+        camera_name.innerHTML = item_name;
+
+        let item_imageUrl = item_page_json.imageUrl;
+        let camera_image = document.getElementById("camera_image");
+        camera_image.src = item_imageUrl;
+
+        let item_description = item_page_json.description;
+        let camera_description = document.getElementById("camera_description");
+        camera_description.innerHTML = item_description;
+
+        let item_price = (item_page_json.price)/100;
+        let item_price_decimal = item_price.toFixed(2);
+        let camera_price = document.getElementById("camera_price");
+        camera_price.innerHTML = item_price_decimal + "€" ;
+        // pareil pour la description
+        // pareil pour le prix
+
+
+
+    // -------------------------------------------------------------------
+     }) //.then(function(item_page_json)
+  .catch(function(err) {
+    alert("Error " + err);
+
+    // Une erreur est survenue
+  });// end of fetch
 
