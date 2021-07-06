@@ -8,8 +8,6 @@
 
 #titre_page {
   max-width: 1440px;
-  margin: auto;
-  text-align: center:;
   height: 180px;
   background-image: radial-gradient(farthest-corner at 40px 0px, #F3E9F1 40%, #E1A5D5 100%);
   display: flex;
