@@ -53,7 +53,8 @@
                  <!-- Section Restaurant -->
                  <!-- section -->
             <section>
-                <div id="camera" >
+                <div id="camera">
+                    <template>
                     <h2 class="camera">Nos appareils photos</h2>
                     <div class="camera_choix"> 
                     	<!-- mettre un lien sur image -->
@@ -61,7 +62,7 @@
                            <a href="description.html"><img src="Server/images/vcam_1.jpg" alt="vcam1"/></a> 
                         </div>
                         <div class="camera_flex_description">
-                            <h3>V CAM 1</h3>
+                            <h3 id ="camera_name"></h3>
                             <p>100€</p>
                         </div>
                     </div>
@@ -70,7 +71,7 @@
                             <img src="Server/images/vcam_2.jpg" alt="vcam2"/>
                         </div>
                         <div class="camera_flex_description">
-                            <h3>V CAM 2</h3>
+                            <h3 id= "camera_name"></h3>
                             <p>228€</p>
                         </div>
                     </div>
@@ -101,6 +102,7 @@
                             <p>200€</p>
                         </div>
                     </div>
+                    </template>
                 </div>
             </section>
              <!-- Pied de page -->
@@ -113,6 +115,7 @@
                     <div><a href="mailto:votrenom@aaaa.com">Contact</a></div>
                 </div>
             </footer>
+            <script src="produit.js"></script>
         </div> 
     </body>
 </html>
