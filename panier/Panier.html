@@ -11,8 +11,8 @@
             <!-- En-tête de la page -->
             <header>
                 <div id="titre_page">
-                    <a href="index.html">
-                   <img class="logo" src="Server/images/logo.png" alt="logo titre"/>
+                    <a href="../index/index.html">
+                   <img class="logo" src="../Server/images/logo.png" alt="logo titre"/>
                    </a>
                     <div id="search_bar">
                     <form method="post">
@@ -29,10 +29,10 @@
             <!-- Navigation dans l'entete -->
             <nav>
                 <div class="navigation"> 
-                    <a href="index.html"><div>Accueil</div></a>
-                    <a href="produit.html"><div>Produits</div></a>
+                    <a href="../index/index.html"><div>Accueil</div></a>
+                    <a href="../produit/produit.html"><div>Produits</div></a>
                     <a href="#"><div>Compte</div></a>
-                    <a href="panier.html"><div>Panier</div></a>
+                    <a href="../panier/panier.html"><div>Panier</div></a>
                 </div>
             </nav>
             <!-- recherche -->
@@ -55,13 +55,13 @@
                 <div id="camera">
                     <div class="camera_choix"> 
                         <div class="camera_images" >
-                           <img src="server/images/vcam_1.jpg" alt="menu palette"/> 
+                           <img src="../server/images/vcam_1.jpg" alt="menu palette"/> 
                         </div>
                     </div>
                     <div class="description">
                         <h3>Total Panier TTC :</h3>
                         <p>100€</p>
-                        <div><a href="confirmation.html"><button class="btn">Confirmer commande</button></a></div>
+                        <div><a href="../confirmation/confirmation.html"><button id ="btn"class="btn">Confirmer commande</button></a></div>
                     </div> 
                 </div>
                 <div>
@@ -70,7 +70,7 @@
                         <label>
                             Nom
                         </label>
-                        <input id="name" class="form-control" placeholder="Nom requis" />
+                        <input id="Name" class="form-control" placeholder="Nom requis" />
                     </div>
                     <div class="form">
                         <label>
@@ -82,13 +82,13 @@
                         <label>
                             Adresse email
                         </label>
-                        <input id="email" class="form-control" type="email" placeholder="Email requis" />
+                        <input id="Email" class="form-control" type="email" placeholder="Email requis" />
                     </div>
                     <div class="form">
                         <label>
                             Telephone
                         </label>
-                        <input id="phone" class="form-control" type="telephone" placeholder="Numero telephone requis" />
+                        <input id="Phone" class="form-control" type="telephone" placeholder="Numero telephone requis" />
                     </div>
                     <div class="form">
                         <label>
@@ -108,6 +108,7 @@
                     <div><a href="mailto:votrenom@aaaa.com">Contact</a></div>
                 </div>
             </footer>
+            <script src="panier.js"></script>
         </div> 
     </body>
 </html>

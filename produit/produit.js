@@ -32,7 +32,7 @@ fetch(create_item_page_url)
         				let item_text_node_image = document.createTextNode(item_page_json[x].imageUrl);
 						let imgElement = document.createElement("img");
 						let lien = document.createElement('a');
-						lien.setAttribute('href', "../description/description.html?camera_id=5be1ed3f1c9d44000030b061"+ item_page_json[x]._id);
+						lien.setAttribute('href', "description.html?camera_id=5be1ed3f1c9d44000030b061"+ item_page_json[x]._id);
 						div_class_camera_images.appendChild(lien);
 	    				imgElement.setAttribute("src", item_page_json[x].imageUrl);
 	    				imgElement.appendChild(item_text_node_image);
