@@ -1,4 +1,11 @@
-let create_item_page_url = "http://localhost:3000/api/cameras/5be1ed3f1c9d44000030b061";
+
+var paramsString = window.location.search
+var searchParams = new URLSearchParams(paramsString);
+const newId = searchParams.get("camera_id");
+console.log (newId)
+
+
+let create_item_page_url = "http://localhost:3000/api/cameras/${newId}";
 fetch(create_item_page_url)
   .then(function(item_page_response) {if (item_page_response.ok) {return item_page_response.json(); } })
   .then(function(item_page_json) {
