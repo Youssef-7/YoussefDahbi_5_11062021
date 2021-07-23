@@ -5,7 +5,7 @@ const newId = searchParams.get("camera_id");
 console.log (newId)
 
 
-let create_item_page_url = "http://localhost:3000/api/cameras/${newId}";
+let create_item_page_url = "http://localhost:3000/api/cameras/" + newId;
 fetch(create_item_page_url)
   .then(function(item_page_response) {if (item_page_response.ok) {return item_page_response.json(); } })
   .then(function(item_page_json) {
@@ -65,6 +65,41 @@ container.appendChild(div_id_camera);
 			let new_item_page_prix = document.createElement("p"); 
 			new_item_page_prix.appendChild(item_price_decimal);
 			div_class_description.appendChild(new_item_page_prix);
+
+			let button = document.createElement("button");
+			button.className = "button";
+			let button_texte = document.createTextNode("Ajouter au panier");
+			button.appendChild(button_texte);
+			div_class_description.appendChild(button);
+
+			button.addEventListener("click", (event) => { event.preventDefault();
+//Local storage
+			let optionProduit = {
+				NomProduit : item_page_json.name,
+				id_produit : item_page_json.id,
+				image_Produit : item_page_json.imageUrl,
+				prix_Produit :item_page_json.price,
+			 }
+
+
+
+
+			let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
+
+			if (produitLocalStorage){
+
+			}
+
+			else{
+
+				produitLocalStorage = [];
+				produitLocalStorage.push(optionProduit);
+				localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
+
+				console.log(produitLocalStorage);
+			}
+}) //fin evenement
+			
     // -------------------------------------------------------------------
      }) //.then(function(item_page_json)
   .catch(function(err) {
