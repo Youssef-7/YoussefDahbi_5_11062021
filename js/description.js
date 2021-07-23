@@ -86,19 +86,15 @@ container.appendChild(div_id_camera);
 
 			let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 
-			if (produitLocalStorage){
+			if (!produitLocalStorage) produitLocalStorage = [];
 
-			}
-
-			else{
-
-				produitLocalStorage = [];
+				
 				produitLocalStorage.push(optionProduit);
 				localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
 
 				console.log(produitLocalStorage);
-			}
-}) //fin evenement
+			
+				}) //fin evenement
 			
     // -------------------------------------------------------------------
      }) //.then(function(item_page_json)
