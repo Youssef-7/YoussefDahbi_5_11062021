@@ -46,13 +46,32 @@ let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 
 
       }  //Fin de la boucle
+
+    // -------------------------------------------------------------------
+let  prix_totale_panier = [];
+
+// Recuperation prix panier
+for (let m = 0; m < produitLocalStorage.length; m++) {
+
+	let prixDansPanier = produitLocalStorage[m].prix_Produit;
+	console.log(prixDansPanier);
+// Prix dans tableau
+	prix_totale_panier.push(prixDansPanier);
+	console.log(prix_totale_panier)
+} // Fin boucle
+
+// Additionner les prix
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+const Total = prix_totale_panier.reduce(reducer,0);
+console.log(Total);
+
       				let h3_panier = document.createTextNode("Total Panier TTC :")
         			let h3Element = document.createElement("h3");
         			h3Element.appendChild(h3_panier);
         			div_class_description.appendChild(h3Element);
 
       				let p_price= document.createElement("p");
-		    		let p_node_price = document.createTextNode(produitLocalStorage[x].prix_Produit/100+",00"+"€");
+		    		let p_node_price = document.createTextNode(Total/100+",00"+"€");
 		    		p_price.appendChild(p_node_price);
 		    		div_class_description.appendChild(p_price);
 
@@ -65,4 +84,3 @@ let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 					lien.setAttribute('href', "confirmation.html");
 					button.appendChild(lien);
 					div_class_description.appendChild(button);
-    // -------------------------------------------------------------------
