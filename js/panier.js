@@ -8,7 +8,19 @@ let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 			//  }
 
     // -------------------------------------------------------------------
- for (x in produitLocalStorage){
+ 
+if (produitLocalStorage === null){
+	let h2_id_camera_name = document.createElement("h2");
+	let h2_node_name = document.createTextNode("Le panier est vide !");
+	h2_id_camera_name.classList = "camera";
+ 	h2_id_camera_name.appendChild(h2_node_name);
+ 	let section = document.getElementById("camera_panier");
+	section.appendChild(h2_id_camera_name);
+
+} else {
+
+
+ for (x in produitLocalStorage) {
      
 
 	let h2_id_camera_name = document.createElement("h2");
@@ -45,11 +57,15 @@ let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 
 
 
-      }  //Fin de la boucle
+      } } //Fin de la boucle
 
     // -------------------------------------------------------------------
 let  prix_totale_panier = [];
 
+if (produitLocalStorage === null){}
+
+else {
+	
 // Recuperation prix panier
 for (let x in produitLocalStorage) {
 
@@ -84,3 +100,5 @@ console.log(Total);
 					lien.setAttribute('href', "confirmation.html");
 					button.appendChild(lien);
 					div_class_description.appendChild(button);
+
+}
