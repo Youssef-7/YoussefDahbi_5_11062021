@@ -51,9 +51,9 @@ let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 let  prix_totale_panier = [];
 
 // Recuperation prix panier
-for (let m = 0; m < produitLocalStorage.length; m++) {
+for (let x = 0; x < produitLocalStorage.length; x++) {
 
-	let prixDansPanier = produitLocalStorage[m].prix_Produit;
+	let prixDansPanier = produitLocalStorage[x].prix_Produit;
 	console.log(prixDansPanier);
 // Prix dans tableau
 	prix_totale_panier.push(prixDansPanier);
