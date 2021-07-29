@@ -76,7 +76,7 @@ container.appendChild(div_id_camera);
 //Local storage
 			let optionProduit = {
 				NomProduit : item_page_json.name,
-				id_produit : item_page_json.id,
+				id_produit : item_page_json._id,
 				image_Produit : item_page_json.imageUrl,
 				prix_Produit :item_page_json.price,
 			 }

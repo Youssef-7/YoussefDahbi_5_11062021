@@ -115,31 +115,31 @@ let affichageFormulaire = () => {
                         <label>
                             Nom
                         </label>
-                        <input id="Nom" class="form-control" placeholder="Nom requis" />
+                        <input id="firstName" class="form-control" placeholder="Nom requis" />
                     </div>
                     <div class="form">
                         <label>
                             Prenom
                         </label>
-                        <input id="Prenom" class="form-control" placeholder="Nom requis" />
+                        <input id="lastName" class="form-control" placeholder="Nom requis" />
                     </div>
                     <div class="form">
                         <label>
                             Adresse
                         </label>
-                        <input id="Adresse" class="form-control" type="Adresse" placeholder="Adresse requise" />
+                        <input id="address" class="form-control" type="Adresse" placeholder="Adresse requise" />
                     </div>
                     <div class="form">
                         <label>
                             Ville
                         </label>
-                        <input id="Ville" class="form-control" placeholder="Nom requis" />
+                        <input id="city" class="form-control" placeholder="Nom requis" />
                     </div>
                     <div class="form">
                         <label>
                             Adresse email
                         </label>
-                        <input id="Email" class="form-control" type="email" placeholder="Email requis" />
+                        <input id="email" class="form-control" type="email" placeholder="Email requis" />
                     </div>
                     <div class="form">
                         <label>
@@ -169,27 +169,29 @@ button.addEventListener("click", (event) => { event.preventDefault()
 // localStorage.setItem("Email", document.querySelector("#Email").value)
 // localStorage.setItem("Phone", document.querySelector("#Phone").value)
 // localStorage.setItem("CB", document.querySelector("#CB").value)
-const donneeFormulaire = {
+const contact = {
 
-	prenom : document.querySelector("#Prenom").value,
-	Nom : document.querySelector("#Nom").value,
-	Adresse : document.querySelector("#Adresse").value,
-	Ville : document.querySelector("#Ville").value,
-	Email : document.querySelector("#Email").value,
-	Phone : document.querySelector("#Phone").value,
-	CB : document.querySelector("#CB").value,
-}
-localStorage.setItem("donneeFormulaire", JSON.stringify(donneeFormulaire));
+	firstName : document.querySelector("#firstName").value,
+	lastName : document.querySelector("#lastName").value,
+	address : document.querySelector("#address").value,
+	city : document.querySelector("#city").value,
+	email : document.querySelector("#email").value,
+
+};
+localStorage.setItem("contact", JSON.stringify(contact));
 
 // --------------ENVOIE SERVER------------------
-const donneeServerEnvoie = {produitLocalStorage, donneeFormulaire};
+const products = produitLocalStorage[x].id_produit
+console.log (products)
+console.log (contact)
+const donneeServerEnvoie = {products, contact};
 
 const envoieServer = fetch("http://localhost:3000/api/cameras/order", {
 	method: "POST",
-	body: JSON.stringify(donneeServerEnvoie),
-	headers: {
+	body: JSON.stringify({ contact, products }),	
+	headers: { "Accept": "application/json",
 		"content-Type" :  "application/json",
 	}
-})
+});
 
-}) //Fin evenement
+});//Fin evenement
