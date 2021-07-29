@@ -81,6 +81,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
 const Total = prix_totale_panier.reduce(reducer,0);
 console.log(Total);
 
+
       				let h3_panier = document.createTextNode("Total Panier TTC :")
         			let h3Element = document.createElement("h3");
         			h3Element.appendChild(h3_panier);
@@ -90,15 +91,105 @@ console.log(Total);
 		    		let p_node_price = document.createTextNode(Total/100+",00"+"€");
 		    		p_price.appendChild(p_node_price);
 		    		div_class_description.appendChild(p_price);
+// -----------------Boutton Confirmation-------------------
 
-		    		let button = document.createElement("button");
+		    		var button = document.createElement("button");
 					button.id = "btn";
 					button.classList = "btn"
-					let button_texte = document.createTextNode("Confirmer commande");
+					var button_texte = document.createTextNode("Confirmer commande");
 					button.appendChild(button_texte);
-					let lien = document.createElement('a');
+					var lien = document.createElement('a');
 					lien.setAttribute('href', "confirmation.html");
 					button.appendChild(lien);
 					div_class_description.appendChild(button);
 
 }
+// --------------------------------------------------------
+
+let affichageFormulaire = () => {
+
+	var positionFormulaire = document.querySelector("#formulaire");
+
+ var formulaire = ` <form method="post" id="form_1">
+                    <div class="form">
+                        <label>
+                            Nom
+                        </label>
+                        <input id="Nom" class="form-control" placeholder="Nom requis" />
+                    </div>
+                    <div class="form">
+                        <label>
+                            Prenom
+                        </label>
+                        <input id="Prenom" class="form-control" placeholder="Nom requis" />
+                    </div>
+                    <div class="form">
+                        <label>
+                            Adresse
+                        </label>
+                        <input id="Adresse" class="form-control" type="Adresse" placeholder="Adresse requise" />
+                    </div>
+                    <div class="form">
+                        <label>
+                            Ville
+                        </label>
+                        <input id="Ville" class="form-control" placeholder="Nom requis" />
+                    </div>
+                    <div class="form">
+                        <label>
+                            Adresse email
+                        </label>
+                        <input id="Email" class="form-control" type="email" placeholder="Email requis" />
+                    </div>
+                    <div class="form">
+                        <label>
+                            Telephone
+                        </label>
+                        <input id="Phone" class="form-control" type="telephone" placeholder="Numero telephone requis" />
+                    </div>
+                    <div class="form">
+                        <label>
+                            Numero CB
+                        </label>
+                        <input id="CB" class="form-control" type="CB" placeholder="Numero CB requis" />
+                    </div>`;
+
+                    positionFormulaire.insertAdjacentHTML("afterbegin", formulaire);
+
+}
+affichageFormulaire ()
+
+// locale storage formulaire
+
+button.addEventListener("click", (event) => { event.preventDefault()
+// localStorage.setItem("prenom", document.querySelector("#Prenom").value)
+// localStorage.setItem("Nom", document.querySelector("#Nom").value)
+// localStorage.setItem("Adresse", document.querySelector("#Adresse").value)
+// localStorage.setItem("Ville", document.querySelector("#Ville").value)
+// localStorage.setItem("Email", document.querySelector("#Email").value)
+// localStorage.setItem("Phone", document.querySelector("#Phone").value)
+// localStorage.setItem("CB", document.querySelector("#CB").value)
+const donneeFormulaire = {
+
+	prenom : document.querySelector("#Prenom").value,
+	Nom : document.querySelector("#Nom").value,
+	Adresse : document.querySelector("#Adresse").value,
+	Ville : document.querySelector("#Ville").value,
+	Email : document.querySelector("#Email").value,
+	Phone : document.querySelector("#Phone").value,
+	CB : document.querySelector("#CB").value,
+}
+localStorage.setItem("donneeFormulaire", JSON.stringify(donneeFormulaire));
+
+// --------------ENVOIE SERVER------------------
+const donneeServerEnvoie = {produitLocalStorage, donneeFormulaire};
+
+const envoieServer = fetch("http://localhost:3000/api/cameras/order", {
+	method: "POST",
+	body: JSON.stringify(donneeServerEnvoie),
+	headers: {
+		"content-Type" :  "application/json",
+	}
+})
+
+}) //Fin evenement
