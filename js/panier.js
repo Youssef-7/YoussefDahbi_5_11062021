@@ -61,14 +61,16 @@ if (produitLocalStorage === null){
 
     // -------------------------------------------------------------------
 let  prix_totale_panier = [];
-
+let products = [];
 if (produitLocalStorage === null){}
 
 else {
-	
+console.log(produitLocalStorage)	
 // Recuperation prix panier
 for (let x in produitLocalStorage) {
-
+	var prod = produitLocalStorage[x].id_produit;
+	products.push(prod);
+	// --------------------------------
 	let prixDansPanier = produitLocalStorage[x].prix_Produit;
 	console.log(prixDansPanier);
 // Prix dans tableau
@@ -178,14 +180,87 @@ const contact = {
 	email : document.querySelector("#email").value,
 
 };
-localStorage.setItem("contact", JSON.stringify(contact));
 
+//-----------------Validation Formulaire--------
+const ValidationPrenomNomVille= (valeur) => {
+return /^[A-Za-z]{3,15}$/.test(valeur);
+}
+
+const ValidationEmail= (valeur) => {
+return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,2}$/.test(valeur);
+}
+
+const ValidationAddress= (valeur) => {
+return /^[A-Za-z0-9\s]{5,30}$/.test(valeur);
+}
+
+const fenetreAlert = (valeur) => {
+	return `${valeur}: ERREUR ! Champs non valide.`
+}
+
+	//controle validité prenom
+function prenomControle() {
+const lastName = contact.lastName;
+if(ValidationPrenomNomVille(lastName)){
+	console.log("OK")
+	return true;
+}else {
+	console.log("ko")
+	alert(fenetreAlert("Prenom :"))
+	return false	
+}
+};//Fin fonction
+	//controle validité nom
+function nomControle() {
+const firstName = contact.firstName;
+if(ValidationPrenomNomVille(firstName)){
+	return true;
+}else {
+	alert(fenetreAlert("Nom:"))
+	return false	
+}
+}; //Fin fonction
+	//controle validité ville
+function cityControle() {
+const city = contact.city;
+if(ValidationPrenomNomVille(city)){
+	return true;
+}else {
+	alert(fenetreAlert("Ville:"))
+	return false	
+}
+}; //Fin fonction
+	//controle validité addresse
+function addressControle() {
+const address = contact.address;
+if(ValidationAddress(address)){
+	return true;
+}else {
+	alert("Erreur ! Adresse non valide")
+	return false	
+}
+}; //Fin fonction
+	//controle validité email
+function emailControle() {
+const email = contact.email;
+if(ValidationEmail(email)){
+	return true;
+}else {
+	alert("Erreur ! Email non valide")
+	return false	
+}
+}; //Fin fonction
+if (prenomControle() && nomControle() && cityControle() && addressControle() && emailControle()) {
+	// Si fonction vrai prenom dans le local storage
+	localStorage.setItem("contact", JSON.stringify(contact));
+}
+else {
+	
+}
 // --------------ENVOIE SERVER------------------
-const products = produitLocalStorage[x].id_produit
+
 console.log (products)
 console.log (contact)
-const donneeServerEnvoie = {products, contact};
-
 const envoieServer = fetch("http://localhost:3000/api/cameras/order", {
 	method: "POST",
 	body: JSON.stringify({ contact, products }),	
