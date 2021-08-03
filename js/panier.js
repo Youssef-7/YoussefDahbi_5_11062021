@@ -160,6 +160,20 @@ let affichageFormulaire = () => {
 
 }
 affichageFormulaire ()
+// -------------------------vider le panier ----------------------
+		    		var button_vider = document.createElement("button");
+					button_vider.id = "btn_vider";
+					var button_vider_texte = document.createTextNode("Vider le panier");
+					button_vider.appendChild(button_vider_texte);
+					formulaire.appendChild(button_vider);
+button_vider.addEventListener("click", (event) => { event.preventDefault()
+
+localStorage.removeItem("produit");
+
+alert("Vous avez vidé le panier");
+window.location.href = "panier.html";
+
+ });
 
 // locale storage formulaire
 
@@ -187,7 +201,7 @@ return /^[A-Za-z]{3,15}$/.test(valeur);
 }
 
 const ValidationEmail= (valeur) => {
-return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,2}$/.test(valeur);
+return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/.test(valeur);
 }
 
 const ValidationAddress= (valeur) => {
@@ -258,15 +272,17 @@ else {
 	
 }
 // --------------ENVOIE SERVER------------------
-
 console.log (products)
 console.log (contact)
+
 const envoieServer = fetch("http://localhost:3000/api/cameras/order", {
 	method: "POST",
 	body: JSON.stringify({ contact, products }),	
 	headers: { "Accept": "application/json",
 		"content-Type" :  "application/json",
-	}
-});
 
+	}
+
+});
+console.log(orderID)
 });//Fin evenement

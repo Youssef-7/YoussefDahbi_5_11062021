@@ -81,9 +81,6 @@ container.appendChild(div_id_camera);
 				prix_Produit :item_page_json.price,
 			 }
 
-
-
-
 			let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 
 			if (!produitLocalStorage) produitLocalStorage = [];
