@@ -267,11 +267,8 @@ if(ValidationEmail(email)){
 if (prenomControle() && nomControle() && cityControle() && addressControle() && emailControle()) {
 	// Si fonction vrai prenom dans le local storage
 	localStorage.setItem("contact", JSON.stringify(contact));
-}
-else {
-	
-}
-// --------------ENVOIE SERVER------------------
+
+	// --------------ENVOIE SERVER------------------
 console.log (products)
 console.log (contact)
 
@@ -283,6 +280,32 @@ const envoieServer = fetch("http://localhost:3000/api/cameras/order", {
 
 	}
 
-});
-console.log(orderID)
+}); //fin fetch
+envoieServer.then(async(response)=>{
+	try{
+		const contenu = await response.json();
+		console.log(contenu);
+		if(response.ok){
+			console.log('resultat response.ok ${response.ok}');
+			console.log('id de la reponse');
+			console.log(contenu.orderId);
+
+			///order Id dans le localestorage
+			localStorage.setItem( "OrderId", contenu.orderId)
+			///lien page confirmation.html
+			window.location = "confirmation.html"
+
+		} else{
+			console.log('resultat serveur ${response.status}');
+		};
+
+	} catch(e){
+		console.log(e);
+	};
+}); //fin test fetch
+
+}else {
+	
+}
+
 });//Fin evenement
