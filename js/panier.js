@@ -23,20 +23,22 @@ if (produitLocalStorage === null){
  for (x in produitLocalStorage) {
      
 
-	let h2_id_camera_name = document.createElement("h2");
-	let h2_node_name = document.createTextNode(produitLocalStorage[x].NomProduit);
-	h2_id_camera_name.classList = "camera";
- 	h2_id_camera_name.appendChild(h2_node_name);
- 	let section = document.getElementById("camera_panier");
-	section.appendChild(h2_id_camera_name);
+
 
 	let div_id_camera = document.createElement("div");
     div_id_camera.id = "camera";
+    var section = document.getElementById("camera_panier");
     section.appendChild(div_id_camera);
 
     	let div_class_camera_choix = document.createElement("div");
         div_class_camera_choix.classList = "camera_choix";
         div_id_camera.appendChild(div_class_camera_choix);
+
+	        let h2_id_camera_name = document.createElement("h2");
+			let h2_node_name = document.createTextNode(produitLocalStorage[x].NomProduit);
+			h2_id_camera_name.classList = "camera_flex_description";
+		 	h2_id_camera_name.appendChild(h2_node_name);
+			div_class_camera_choix.appendChild(h2_id_camera_name);
 
         	let div_class_camera_images = document.createElement("div");
         	div_class_camera_images.classList = "camera_images";
@@ -47,6 +49,12 @@ if (produitLocalStorage === null){
 	    				imgElement.setAttribute("src", produitLocalStorage[x].image_Produit);
 	    				imgElement.appendChild(item_text_node_image); //image
 	    				div_class_camera_images.appendChild(imgElement);
+
+	    	let p_id_camera_prix = document.createElement("p");
+			let p_node_prix = document.createTextNode(produitLocalStorage[x].prix_Produit/100+",00"+"€");
+			p_id_camera_prix.classList = "camera_flex_description";
+		 	p_id_camera_prix.appendChild(p_node_prix);
+			div_class_camera_choix.appendChild(p_id_camera_prix);
 
 	   		var div_class_description = document.createElement("div");
 	    	div_class_description.classList = "camera_flex_description";
@@ -87,12 +95,12 @@ console.log(Total);
       				let h3_panier = document.createTextNode("Total Panier TTC :")
         			let h3Element = document.createElement("h3");
         			h3Element.appendChild(h3_panier);
-        			div_class_description.appendChild(h3Element);
+        			section.appendChild(h3Element);
 
       				let p_price= document.createElement("p");
 		    		let p_node_price = document.createTextNode(Total/100+",00"+"€");
 		    		p_price.appendChild(p_node_price);
-		    		div_class_description.appendChild(p_price);
+		    		section.appendChild(p_price);
 // -----------------Boutton Confirmation-------------------
 
 		    		var button = document.createElement("button");
@@ -103,7 +111,7 @@ console.log(Total);
 					var lien = document.createElement('a');
 					lien.setAttribute('href', "confirmation.html");
 					button.appendChild(lien);
-					div_class_description.appendChild(button);
+					section.appendChild(button);
 
 }
 // --------------------------------------------------------
@@ -162,7 +170,7 @@ let affichageFormulaire = () => {
 affichageFormulaire ()
 // -------------------------vider le panier ----------------------
 		    		var button_vider = document.createElement("button");
-					button_vider.id = "btn_vider";
+					button_vider.classList = "btn";
 					var button_vider_texte = document.createTextNode("Vider le panier");
 					button_vider.appendChild(button_vider_texte);
 					formulaire.appendChild(button_vider);

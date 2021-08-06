@@ -153,7 +153,7 @@ a {
   color: inherit;
 }
 
-.btn {
+.button {
   width: 250px;
   height: 70px;
   border-radius: 70px;
@@ -165,7 +165,7 @@ a {
   background-image: radial-gradient(farthest-corner at 40px 0, #FF79DA 0%, #9356DC 100%);
   box-shadow: 2px 8px 10px #EAEAEA;
 }
-.btn:hover{opacity: 0.8;}
+.button:hover{opacity: 0.8;}
 }
 @media screen and (max-width: 1080px){
 #bloc_page {
@@ -329,7 +329,7 @@ border:none;}
   margin-bottom: 10px;
   margin-right: 0px;
   }
-.btn {
+.button {
   width: 250px;
   height: 70px;
   border-radius: 70px;
@@ -341,7 +341,7 @@ border:none;}
   background-image: radial-gradient(farthest-corner at 40px 0, #FF79DA 0%, #9356DC 100%);
   box-shadow: 2px 8px 10px #EAEAEA;
 }
-.btn:hover{opacity: 0.8;}
+.button:hover{opacity: 0.8;}
 
 
 
