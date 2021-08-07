@@ -5,6 +5,7 @@ let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 			// 	id_produit : item_page_json.id,
 			// 	image_Produit : item_page_json.imageUrl,
 			// 	prix_Produit :item_page_json.price,
+			//  quantite_produit : camera_quantite,
 			//  }
 
     // -------------------------------------------------------------------
@@ -50,22 +51,46 @@ if (produitLocalStorage === null){
 	    				imgElement.appendChild(item_text_node_image); //image
 	    				div_class_camera_images.appendChild(imgElement);
 
+	    	let k_id_camera_prix = document.createElement("p");
+			let k_node_prix = document.createTextNode("Quantité:"+" "+produitLocalStorage[x].quantite_produit);
+			k_id_camera_prix.classList = "camera_flex_description";
+		 	k_id_camera_prix.appendChild(k_node_prix);
+			div_class_camera_choix.appendChild(k_id_camera_prix);
+
 	    	let p_id_camera_prix = document.createElement("p");
 			let p_node_prix = document.createTextNode(produitLocalStorage[x].prix_Produit/100+",00"+"€");
 			p_id_camera_prix.classList = "camera_flex_description";
 		 	p_id_camera_prix.appendChild(p_node_prix);
 			div_class_camera_choix.appendChild(p_id_camera_prix);
 
+			var button_supprimer = document.createElement("button");
+			button_supprimer.id = "btn_delete";
+			var button_supprimer_texte = document.createTextNode("Supprimer");
+			button_supprimer.appendChild(button_supprimer_texte);
+			div_class_camera_choix.appendChild(button_supprimer);
+
+
 	   		var div_class_description = document.createElement("div");
 	    	div_class_description.classList = "camera_flex_description";
 	    	div_id_camera.appendChild(div_class_description);
-		
-
-
-
-
 
       } } //Fin de la boucle
+    // ------------------------Boutton supprimer-----------------------
+
+  var btn_supp = document.querySelectorAll("#btn_delete");
+  console.log("boutton supprimer")
+  console.log(btn_supp)
+
+  for (let x = 0; x < btn_supp.length; x++){
+  	btn_supp[x].addEventListener("click", (event) =>{
+  		event.preventDefault()
+
+  	localStorage.removeItem[x];
+    produitLocalStorage.splice(x, 1);
+    localStorage.setItem('produit', JSON.stringify( produitLocalStorage));
+    window.location.reload();
+  	})
+  }
 
     // -------------------------------------------------------------------
 let  prix_totale_panier = [];

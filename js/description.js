@@ -66,20 +66,66 @@ container.appendChild(div_id_camera);
 			new_item_page_prix.appendChild(item_price_decimal);
 			div_class_description.appendChild(new_item_page_prix);
 
+			let form = document.createElement("form");
+			div_class_description.appendChild(form);
+
+			let label = document.createElement("label");
+			let label_node_texte = document.createTextNode("Choisir quantité");
+			label.appendChild(label_node_texte);
+			label.setAttribute("for", "quantite_produit");
+			form.appendChild(label);
+
+			let select =document.createElement("select");
+			select.id = "quantite_produit";
+			select.setAttribute("name", "quantite_produit");
+			form.appendChild(select);
+
+			let option = document.createElement("option");
+			let option_node_texte = document.createTextNode("1")
+			option.appendChild(option_node_texte);
+			option.setAttribute("value", "1");
+			select.appendChild(option);
+
+			let option2 = document.createElement("option");
+			let option_node_texte2 = document.createTextNode("2")
+			option2.appendChild(option_node_texte2);
+			option2.setAttribute("value", "2");
+			select.appendChild(option2);
+
+
+			let option3 = document.createElement("option");
+			let option_node_texte3 = document.createTextNode("3")
+			option3.appendChild(option_node_texte3);
+			option3.setAttribute("value", "3");
+			select.appendChild(option3);
+
+
 			let button = document.createElement("button");
 			button.className = "button";
 			let button_texte = document.createTextNode("Ajouter au panier");
 			button.appendChild(button_texte);
 			div_class_description.appendChild(button);
 
+// ---------------------Quantité produit----------------------//
+
+		const quantite_produit = document.querySelector("#quantite_produit");
+
+
+
 			button.addEventListener("click", (event) => { event.preventDefault();
 //Local storage
+			const camera_quantite = quantite_produit.value;
+			console.log('camera_quantite');
+			console.log(camera_quantite);
+			
 			let optionProduit = {
 				NomProduit : item_page_json.name,
 				id_produit : item_page_json._id,
 				image_Produit : item_page_json.imageUrl,
-				prix_Produit :item_page_json.price,
+				prix_Produit :item_page_json.price * camera_quantite,
+				quantite_produit : camera_quantite,
 			 }
+
 
 			let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 
