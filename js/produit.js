@@ -2,10 +2,10 @@ let create_item_page_url = "http://localhost:3000/api/cameras";
 
 fetch(create_item_page_url)
   .then(function(item_page_response) {if (item_page_response.ok) {return item_page_response.json(); } })
-  .then(function(item_page_json) {
+  .then(function(item_page_json)  {
     // -------------------------------------------------------------------
-        // let item_name = item_page_json;
-        // let camera_name = document.getElementById("camera_name");
+        console.log("Test n°1 = Affichage reponse du serveur")
+        console.log(item_page_json)
 
         let new_item_node_name = document.createTextNode("Nos cameras")
         let h2Element = document.createElement("h2");
@@ -15,8 +15,11 @@ fetch(create_item_page_url)
         div_id_camera.appendChild(h2Element);    //div titre description
 
         for (x in item_page_json){
+            console.log("Test n°2 = Affichage numero cameras")
         	console.log(x);
+            console.log("Test n°3 = Affichage description cameras")
         	console.log(item_page_json[x]);
+            console.log("Test n°4 = Affichage nom cameras")
         	console.log(item_page_json[x].name);
           
           
@@ -50,6 +53,8 @@ fetch(create_item_page_url)
 
 		   	let p_price= document.createElement("p");
 		    let p_node_price = document.createTextNode(item_page_json[x].price/100+",00"+"€");
+            console.log("Test n°5 = Affichage prix cameras")
+            console.log(p_node_price)
 		    p_price.appendChild(p_node_price);
 		    div_class_camera_flex_description.appendChild(p_price); 
 		    }// fin de la boucle

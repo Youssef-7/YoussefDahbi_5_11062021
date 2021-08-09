@@ -1,7 +1,10 @@
 
 var paramsString = window.location.search
+console.log("Test n°1: Recuperation du lien dans la page description.html")
+console.log(paramsString)
 var searchParams = new URLSearchParams(paramsString);
 const newId = searchParams.get("camera_id");
+console.log("Test n°2: Recuperation de l'ID")
 console.log (newId)
 
 
@@ -115,7 +118,7 @@ container.appendChild(div_id_camera);
 			button.addEventListener("click", (event) => { event.preventDefault();
 //Local storage
 			const camera_quantite = quantite_produit.value;
-			console.log('camera_quantite');
+			console.log('Test n°3: Verification quantite cameras');
 			console.log(camera_quantite);
 			
 			let optionProduit = {
@@ -125,16 +128,14 @@ container.appendChild(div_id_camera);
 				prix_Produit :item_page_json.price * camera_quantite,
 				quantite_produit : camera_quantite,
 			 }
-
-
+			 console.log("Test n°4: Donnees presentes dans optionProduit")
+			 console.log(optionProduit)
 			let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 
 			if (!produitLocalStorage) produitLocalStorage = [];
-
-				
 				produitLocalStorage.push(optionProduit);
 				localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
-
+				console.log("Test n°5: Donnees presentes dans le localStorage")
 				console.log(produitLocalStorage);
 			
 				}) //fin evenement

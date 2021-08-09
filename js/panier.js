@@ -78,7 +78,7 @@ if (produitLocalStorage === null){
     // ------------------------Boutton supprimer-----------------------
 
   var btn_supp = document.querySelectorAll("#btn_delete");
-  console.log("boutton supprimer")
+  console.log("Test n°1: bouton supprimer")
   console.log(btn_supp)
 
   for (let x = 0; x < btn_supp.length; x++){
@@ -98,6 +98,7 @@ let products = [];
 if (produitLocalStorage === null){}
 
 else {
+console.log("Test n°2: Controle donnée localStorage si panier plein")
 console.log(produitLocalStorage)	
 // Recuperation prix panier
 for (let x in produitLocalStorage) {
@@ -105,9 +106,11 @@ for (let x in produitLocalStorage) {
 	products.push(prod);
 	// --------------------------------
 	let prixDansPanier = produitLocalStorage[x].prix_Produit;
+	console.log("Test n°3: Présence des prix des cameras dans le panier")
 	console.log(prixDansPanier);
 // Prix dans tableau
 	prix_totale_panier.push(prixDansPanier);
+	console.log("Test n°4: prix totale affiché")
 	console.log(prix_totale_panier)
 } // Fin boucle
 
@@ -249,9 +252,11 @@ const fenetreAlert = (valeur) => {
 function prenomControle() {
 const lastName = contact.lastName;
 if(ValidationPrenomNomVille(lastName)){
+	console.log("Test n°5: validation formulaire")
 	console.log("OK")
 	return true;
 }else {
+	console.log("Test n°6: Nom validation formulaire")
 	console.log("ko")
 	alert(fenetreAlert("Prenom :"))
 	return false	
@@ -302,7 +307,9 @@ if (prenomControle() && nomControle() && cityControle() && addressControle() && 
 	localStorage.setItem("contact", JSON.stringify(contact));
 
 	// --------------ENVOIE SERVER------------------
+console.log("Test n°7: Produit")
 console.log (products)
+console.log("Test n°8: Contact")
 console.log (contact)
 
 const envoieServer = fetch("http://localhost:3000/api/cameras/order", {
@@ -319,9 +326,6 @@ envoieServer.then(async(response)=>{
 		const contenu = await response.json();
 		console.log(contenu);
 		if(response.ok){
-			console.log('resultat response.ok ${response.ok}');
-			console.log('id de la reponse');
-			console.log(contenu.orderId);
 
 			///order Id dans le localestorage
 			localStorage.setItem( "OrderId", contenu.orderId)
@@ -329,7 +333,7 @@ envoieServer.then(async(response)=>{
 			window.location = "confirmation.html"
 
 		} else{
-			console.log('resultat serveur ${response.status}');
+			
 		};
 
 	} catch(e){
