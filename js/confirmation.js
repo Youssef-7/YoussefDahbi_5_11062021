@@ -1,5 +1,5 @@
         const responseId = localStorage.getItem("OrderId")
-        console.log("Id de la commande")
+        console.log("Test n°1: Id de la commande")
         console.log(responseId)
         let new_item_node_name = document.createTextNode("Bravo votre commande n°"+responseId+" "+"arrivera très prochainement")
         let pElement = document.createElement("p");
