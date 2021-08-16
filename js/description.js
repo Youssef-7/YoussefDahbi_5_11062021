@@ -2,8 +2,20 @@
 var paramsString = window.location.search
 console.log("Test n°1: Recuperation du lien dans la page description.html")
 console.log(paramsString)
+const ValidationId= (valeur) => {
+return /^[a-z0-9]{24}$/.test(valeur);
+}
 var searchParams = new URLSearchParams(paramsString);
-const newId = searchParams.get("camera_id");
+let newId = searchParams.get("camera_id");
+
+
+if(ValidationId(newId)) {
+	console.log("OK")
+
+}else {	alert("Erreur ! ID non valide")
+
+}
+
 console.log("Test n°2: Recuperation de l'ID")
 console.log (newId)
 
@@ -120,6 +132,8 @@ container.appendChild(div_id_camera);
 			const camera_quantite = quantite_produit.value;
 			console.log('Test n°3: Verification quantite cameras');
 			console.log(camera_quantite);
+
+
 			
 			let optionProduit = {
 				NomProduit : item_page_json.name,
@@ -137,6 +151,10 @@ container.appendChild(div_id_camera);
 				localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
 				console.log("Test n°5: Donnees presentes dans le localStorage")
 				console.log(produitLocalStorage);
+				let cameraIdPanier = item_page_json.name
+				console.log(cameraIdPanier) 
+
+				alert("La camera"+" "+cameraIdPanier+" "+"à été ajouté au panier")
 			
 				}) //fin evenement
 			
