@@ -118,8 +118,7 @@ for (let x in produitLocalStorage) {
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 const Total = prix_totale_panier.reduce(reducer,0);
 console.log(Total);
-
-
+localStorage.setItem( "prixTotal", Total/100+",00"+"€"); 
       				let h3_panier = document.createTextNode("Total Panier TTC :")
         			let h3Element = document.createElement("h3");
         			h3Element.appendChild(h3_panier);
@@ -221,6 +220,7 @@ button.addEventListener("click", (event) => { event.preventDefault()
 // localStorage.setItem("Email", document.querySelector("#Email").value)
 // localStorage.setItem("Phone", document.querySelector("#Phone").value)
 // localStorage.setItem("CB", document.querySelector("#CB").value)
+localStorage.removeItem("produit")
 const contact = {
 
 	firstName : document.querySelector("#firstName").value,
