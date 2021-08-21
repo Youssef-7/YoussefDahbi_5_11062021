@@ -135,7 +135,7 @@ container.appendChild(div_id_camera);
 
 
 			
-			let optionProduit = {
+			var optionProduit = {
 				NomProduit : item_page_json.name,
 				id_produit : item_page_json._id,
 				image_Produit : item_page_json.imageUrl,
@@ -146,13 +146,36 @@ container.appendChild(div_id_camera);
 			 console.log(optionProduit)
 			let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 
-			if (!produitLocalStorage) produitLocalStorage = [];
-				produitLocalStorage.push(optionProduit);
+   if (!produitLocalStorage){
+produitLocalStorage = [];
+produitLocalStorage.push(optionProduit);
+
+}else{
+
+// *******************************************************
+for (x in produitLocalStorage ){
+let produit_deja_choisi = produitLocalStorage[x];
+
+if (produit_deja_choisi.id_produit == item_page_json._id){
+var nb2 = parseInt(camera_quantite)
+var nb = parseInt(quantite_produit)
+nb3 = produitLocalStorage[x].quantite_produit 
+nb3 = nb3 + nb2;
+
+}else{
+produitLocalStorage.push(optionProduit);
+
+}//end if (produit_deja_choisi. ...
+}//end for in
+// *******************************************************
+
+}//end if (!produitLocalStorage)
+console.log(nb3)
 				localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
 				console.log("Test n°5: Donnees presentes dans le localStorage")
 				console.log(produitLocalStorage);
-				let cameraIdPanier = item_page_json.name
-				console.log(cameraIdPanier) 
+				let cameraIdPanier = item_page_json.name;
+				console.log(cameraIdPanier);
 
 				alert("La camera"+" "+cameraIdPanier+" "+"à été ajouté au panier")
 			
