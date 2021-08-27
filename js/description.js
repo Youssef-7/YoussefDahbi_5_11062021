@@ -129,54 +129,80 @@ container.appendChild(div_id_camera);
 
 			button.addEventListener("click", (event) => { event.preventDefault();
 //Local storage
-			const camera_quantite = quantite_produit.value;
+			var camera_quantite = quantite_produit.value;
+
+
 			console.log('Test n°3: Verification quantite cameras');
 			console.log(camera_quantite);
-
-
 			
-			var optionProduit = {
-				NomProduit : item_page_json.name,
-				id_produit : item_page_json._id,
-				image_Produit : item_page_json.imageUrl,
-				prix_Produit :item_page_json.price * camera_quantite,
-				quantite_produit : camera_quantite,
-			 }
-			 console.log("Test n°4: Donnees presentes dans optionProduit")
-			 console.log(optionProduit)
-			let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
+			// let optionProduit = {
+			// 	NomProduit : item_page_json.name,
+			// 	id_produit : item_page_json._id,
+			// 	image_Produit : item_page_json.imageUrl,
+			// 	prix_Produit :item_page_json.price * camera_quantite,
+			// 	quantite_produit : camera_quantite,
+			//  }
+			//  console.log("Test n°4: Donnees presentes dans optionProduit")
+			//  console.log(optionProduit)
+			// let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
 
-   if (!produitLocalStorage){
-produitLocalStorage = [];
-produitLocalStorage.push(optionProduit);
+			// if (!produitLocalStorage) produitLocalStorage = [];
+			// 	produitLocalStorage.push(optionProduit);
+			// 	localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
+			// 	console.log("Test n°5: Donnees presentes dans le localStorage")
+			// 	console.log(produitLocalStorage);
+				
+			// 	console.log(cameraIdPanier);
+			let optionProduit = {
+	'NomProduit': 		item_page_json.name,
+	'id_produit': 		item_page_json._id,
+	'image_Produit': 		item_page_json.imageUrl,
+	'prix_Produit': 		item_page_json.price * camera_quantite,
+	'quantite_produit': camera_quantite,
+ };
+			 console.log("Test n°1: Donnees presentes dans optionProduit");
+			 console.log(optionProduit);
 
-}else{
+// Create artificial localStorage - data to test code
+let produitLocalStorage = [];
+produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
+
+
 
 // *******************************************************
-for (x in produitLocalStorage ){
-let produit_deja_choisi = produitLocalStorage[x];
 
-if (produit_deja_choisi.id_produit == item_page_json._id){
-var nb2 = parseInt(camera_quantite)
-var nb = parseInt(quantite_produit)
-nb3 = produitLocalStorage[x].quantite_produit 
-nb3 = nb3 + nb2;
-
-}else{
-produitLocalStorage.push(optionProduit);
-
-}//end if (produit_deja_choisi. ...
-}//end for in
-// *******************************************************
-
-}//end if (!produitLocalStorage)
-console.log(nb3)
+			if (!produitLocalStorage){
+			 produitLocalStorage = [];
+				produitLocalStorage.push(optionProduit);
 				localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
-				console.log("Test n°5: Donnees presentes dans le localStorage")
-				console.log(produitLocalStorage);
-				let cameraIdPanier = item_page_json.name;
-				console.log(cameraIdPanier);
 
+				}else{
+
+					for (x in produitLocalStorage ){
+
+						let produit_deja_choisi = produitLocalStorage[x];
+						let nb1 = parseInt(optionProduit.quantite_produit);
+						let nb2 = parseInt(produit_deja_choisi.quantite_produit);
+						let nb3 = parseInt(nb1 + nb2);
+						let nb4 = parseInt(optionProduit.prix_Produit)
+						let nb5 = parseInt(nb4*nb3)
+				console.log("Test n°2-2 ** nb1 - nb2 - nb3");
+				console.log(nb1 + " - " + nb2 + " - " + nb3);
+				console.log(optionProduit.prix_Produit)
+						if (produit_deja_choisi.id_produit == item_page_json._id){
+							 produitLocalStorage[x].quantite_produit = nb3; 
+							 produitLocalStorage[x].prix_Produit = nb5;
+							 localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
+							}else{
+							produitLocalStorage.push(optionProduit);
+							localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
+
+						}//end if (produit_deja_choisi. ... 
+					}//end for in
+			}//end if (!produitLocalStorage)
+
+
+				let cameraIdPanier = item_page_json.name;
 				alert("La camera"+" "+cameraIdPanier+" "+"à été ajouté au panier")
 			
 				}) //fin evenement
